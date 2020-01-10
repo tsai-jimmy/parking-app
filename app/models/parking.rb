@@ -32,6 +32,7 @@ class Parking < ApplicationRecord
     end
   end
 
+  # 第一个小时 ¥2，之后每半小时 ¥1
   def calculate_guest_term_amount
     if duration <= 60
       self.amount = origin_amount
@@ -40,6 +41,7 @@ class Parking < ApplicationRecord
     end
   end
 
+  # 第一个小时 ¥2，之后每半小时 ¥0.5
   def calculate_short_term_amount
     if duration <= 60
       self.amount = origin_amount
@@ -48,6 +50,7 @@ class Parking < ApplicationRecord
     end
   end
 
+  # 长期费率：一天 ¥16，若停六小时以内 ¥12
   def calculate_long_term_amount
     if duration <= 360
       self.amount = origin_amount * 6
